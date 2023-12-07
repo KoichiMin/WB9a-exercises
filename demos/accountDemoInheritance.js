@@ -27,9 +27,11 @@ class Account {
         return this.balance;
     }
 
-    // setBalance(newAmount){
-    //     this.balance = newAmount;
-    // }
+    setBalance(newAmount){
+        this.balance = newAmount;
+    }
+
+
 
     Deposit(amountToDeposit){
         this.balance += amountToDeposit;
@@ -48,7 +50,7 @@ class Account {
 
             this.balance -= amountTodWithdraw;
             this.balance -= this.overdraftFee;
-            console.log("incurring overdraft fee of " + this.overdraftFee);
+            this.addHistory("incurring overdraft fee of " + this.overdraftFee)
             this.Display();
 
 
@@ -86,7 +88,7 @@ class SavingsAccount extends Account{
         let monthlyInterestRate = this.interestRate/ 12;
         let interestThisMonth = super.getBalance() * monthlyInterestRate;
         super.addHistory("Accruing Interest of " + interestThisMonth);
-        super.setBalance = super.getBalance() + interestThisMonth;
+        super.setBalance(super.getBalance() + interestThisMonth);
         super.Display();
 
     }
